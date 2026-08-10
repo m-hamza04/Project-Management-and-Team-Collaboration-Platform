@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* ── Color tokens ── */
+  --color-base: #0F1115;
+  --color-surface: #17191F;
+  --color-surface-hover: #1D2028;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  --color-text: #EDEDF0;
+  --color-text-muted: #8B8D98;
+  --color-text-faint: #55575F;
+
+  --color-accent: #F2A93B;
+  --color-accent-hover: #FFBC5C;
+  --color-accent-muted: rgba(242, 169, 59, 0.14);
+
+  --color-status-low: #3DD9C2;
+  --color-status-medium: #F2A93B;
+  --color-status-high: #FF8A5B;
+  --color-status-urgent: #FF6B5B;
+
+  --color-success: #3DD9C2;
+  --color-danger: #FF6B5B;
+
+  /* ── Type ── */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-base);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background-color: var(--color-accent-muted);
+  color: var(--color-accent);
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Thin, unobtrusive scrollbar to match the dark surface */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Signature: the priority "orbit dot" — used on task cards/rows */
+.orbit-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  display: inline-block;
+  box-shadow: 0 0 0 3px currentColor, 0 0 8px 1px currentColor;
+  opacity: 0.9;
+}
+.orbit-dot-pulse {
+  animation: orbit-pulse 1.8s ease-in-out infinite;
+}
+@keyframes orbit-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px currentColor, 0 0 8px 1px currentColor; }
+  50% { box-shadow: 0 0 0 5px currentColor, 0 0 14px 3px currentColor; }
+}
+
+/* Signature: sidebar active-icon sliding glow pill */
+.sidebar-active-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: var(--color-accent-muted);
+  box-shadow: inset 0 0 0 1px rgba(242, 169, 59, 0.35);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
