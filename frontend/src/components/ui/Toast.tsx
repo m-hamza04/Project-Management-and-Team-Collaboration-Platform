@@ -38,8 +38,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             className={clsx(
               'flex items-start gap-2.5 rounded-xl border px-4 py-3 shadow-lg backdrop-blur-sm animate-[fadeIn_0.2s_ease]',
               toast.type === 'success'
-                ? 'bg-[rgba(61,217,194,0.1)] border-[rgba(61,217,194,0.3)] text-[var(--color-text)]'
-                : 'bg-[rgba(255,107,91,0.1)] border-[rgba(255,107,91,0.3)] text-[var(--color-text)]'
+                ? 'bg-[rgba(111,168,154,0.14)] border-[rgba(111,168,154,0.3)] text-[var(--color-text)]'
+                : 'bg-[rgba(224,112,92,0.1)] border-[rgba(224,112,92,0.3)] text-[var(--color-text)]'
             )}
           >
             {toast.type === 'success' ? (

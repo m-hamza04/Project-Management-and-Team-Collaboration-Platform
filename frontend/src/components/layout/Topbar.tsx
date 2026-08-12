@@ -25,7 +25,7 @@ export function Topbar({ unreadCount }: { unreadCount: number }) {
       <div className="flex items-center gap-4">
         <Link
           to="/notifications"
-          className="relative flex h-10 w-10 items-center justify-center rounded-xl text-[var(--color-text-muted)] transition-colors hover:bg-white/5 hover:text-[var(--color-text)]"
+          className="relative flex h-10 w-10 items-center justify-center rounded-xl text-[var(--color-text-muted)] transition-colors hover:bg-black/[0.04] hover:text-[var(--color-text)]"
         >
           <Bell size={18} />
           {unreadCount > 0 && (

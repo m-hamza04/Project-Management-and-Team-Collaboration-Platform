@@ -6,6 +6,10 @@ datasource db {
   provider = "postgresql"
 }
 
+// ─────────────────────────────
+// ENUMS
+// ─────────────────────────────
+
 enum Role {
   ADMIN
   PROJECT_MANAGER
@@ -43,6 +47,10 @@ enum NotificationType {
   ATTACHMENT_ADDED
 }
 
+// ─────────────────────────────
+// MODELS
+// ─────────────────────────────
+
 model User {
   id        String   @id @default(uuid())
   name      String
@@ -53,6 +61,8 @@ model User {
   avatarUrl String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // Relations
   managedProjects   Project[]          @relation("ProjectManager")
   projectMemberships ProjectMember[]
   assignedTasks     Task[]             @relation("TaskAssignee")
@@ -60,6 +70,7 @@ model User {
   discussions       TaskDiscussion[]
   notifications     Notification[]
   attachments       Attachment[]
+  messages          Message[]
 
   @@map("users")
 }
@@ -74,11 +85,14 @@ model Project {
   status      ProjectStatus @default(PLANNED)
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+
+  // Relations
   managerId String
   manager   User   @relation("ProjectManager", fields: [managerId], references: [id])
 
   members ProjectMember[]
   tasks   Task[]
+  messages Message[]
 
   @@map("projects")
 }
@@ -106,6 +120,8 @@ model Task {
   dueDate     DateTime?
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+
+  // Relations
   projectId String
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
@@ -133,6 +149,20 @@ model TaskDiscussion {
   author   User   @relation(fields: [authorId], references: [id])
 
   @@map("task_discussions")
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  authorId String
+  author   User    @relation(fields: [authorId], references: [id])
+
+  @@map("messages")
 }
 
 model Attachment {

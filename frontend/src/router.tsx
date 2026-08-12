@@ -7,6 +7,7 @@ import { DashboardPage } from '@/pages/dashboard/DashboardPage';
 import { ProjectsPage } from '@/pages/projects/ProjectsPage';
 import { ProjectDetailPage } from '@/pages/projects/ProjectDetailPage';
 import { TasksPage } from '@/pages/tasks/TasksPage';
+import { ChatPage } from '@/pages/chat/ChatPage';
 import { NotificationsPage } from '@/pages/notifications/NotificationsPage';
 import { ProfilePage } from '@/pages/profile/ProfilePage';
 import { UsersPage } from '@/pages/users/UsersPage';
@@ -68,6 +69,12 @@ const tasksRoute = createRoute({
   component: TasksPage,
 });
 
+const chatRoute = createRoute({
+  getParentRoute: () => protectedRoute,
+  path: '/chat',
+  component: ChatPage,
+});
+
 const notificationsRoute = createRoute({
   getParentRoute: () => protectedRoute,
   path: '/notifications',
@@ -103,6 +110,7 @@ const routeTree = rootRoute.addChildren([
     projectsRoute,
     projectDetailRoute,
     tasksRoute,
+    chatRoute,
     notificationsRoute,
     profileRoute,
     usersRoute,

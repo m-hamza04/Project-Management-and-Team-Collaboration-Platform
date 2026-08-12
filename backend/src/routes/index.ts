@@ -6,6 +6,7 @@ import taskRoutes from './task.routes';
 import discussionRoutes from './discussion.routes';
 import notificationRoutes from './notification.routes';
 import attachmentRoutes from './attachment.routes';
+import messageRoutes from './message.routes';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/tasks', taskRoutes);
 router.use('/tasks/:taskId/discussions', discussionRoutes);
 router.use('/tasks/:taskId/attachments', attachmentRoutes);
 router.use('/notifications', notificationRoutes);
+router.use('/projects/:projectId/messages', messageRoutes);
 
 export default router;

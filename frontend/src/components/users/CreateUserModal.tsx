@@ -68,7 +68,7 @@ export function CreateUserModal({ onClose }: { onClose: () => void }) {
         </Select>
 
         {error && (
-          <p className="rounded-lg bg-[rgba(255,107,91,0.1)] px-3 py-2 text-sm text-[var(--color-danger)]">
+          <p className="rounded-lg bg-[rgba(224,112,92,0.1)] px-3 py-2 text-sm text-[var(--color-danger)]">
             {error}
           </p>
         )}

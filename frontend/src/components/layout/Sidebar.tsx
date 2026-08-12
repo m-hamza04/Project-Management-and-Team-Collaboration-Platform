@@ -3,6 +3,7 @@ import {
   LayoutDashboard,
   FolderKanban,
   ListChecks,
+  MessageCircle,
   Bell,
   User as UserIcon,
   Users,
@@ -27,6 +28,7 @@ export function Sidebar() {
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { to: '/projects', icon: FolderKanban, label: 'Projects' },
     { to: '/tasks', icon: ListChecks, label: 'Tasks' },
+    { to: '/chat', icon: MessageCircle, label: 'Messages' },
     ...(user?.role === 'ADMIN' ? [{ to: '/users', icon: Users, label: 'Users' }] : []),
     { to: '/notifications', icon: Bell, label: 'Notifications' },
     { to: '/profile', icon: UserIcon, label: 'Profile' },
@@ -35,7 +37,7 @@ export function Sidebar() {
   return (
     <aside className="flex h-full w-[76px] flex-col items-center justify-between border-r border-[var(--color-border)] bg-[var(--color-base)] py-5">
       <div className="flex flex-col items-center gap-1">
-        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)] font-[var(--font-display)] text-lg font-bold text-[#151007]">
+        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)] font-[var(--font-display)] text-lg font-bold text-[var(--color-accent-text)]">
           F
         </div>
 
@@ -62,7 +64,7 @@ export function Sidebar() {
       <button
         onClick={() => dispatch(logout())}
         title="Log out"
-        className="flex h-11 w-11 items-center justify-center rounded-xl text-[var(--color-text-muted)] transition-colors hover:bg-[rgba(255,107,91,0.1)] hover:text-[var(--color-danger)]"
+        className="flex h-11 w-11 items-center justify-center rounded-xl text-[var(--color-text-muted)] transition-colors hover:bg-[rgba(224,112,92,0.1)] hover:text-[var(--color-danger)]"
       >
         <LogOut size={19} />
       </button>

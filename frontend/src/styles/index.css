@@ -2,28 +2,30 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Color tokens ── */
-  --color-base: #0F1115;
-  --color-surface: #17191F;
-  --color-surface-hover: #1D2028;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+  /* ── Color tokens — soft pastel / off-white ── */
+  --color-base: #FAFAF8;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F5F4F1;
+  --color-border: rgba(30, 30, 35, 0.08);
+  --color-border-strong: rgba(30, 30, 35, 0.14);
 
-  --color-text: #EDEDF0;
-  --color-text-muted: #8B8D98;
-  --color-text-faint: #55575F;
+  --color-text: #2A2A2E;
+  --color-text-muted: #767680;
+  --color-text-faint: #A8A8B0;
 
-  --color-accent: #F2A93B;
-  --color-accent-hover: #FFBC5C;
-  --color-accent-muted: rgba(242, 169, 59, 0.14);
+  /* Muted sage-teal — calm, general, not gendered */
+  --color-accent: #6FA89A;
+  --color-accent-hover: #5C9284;
+  --color-accent-muted: rgba(111, 168, 154, 0.14);
+  --color-accent-text: #FFFFFF;
 
-  --color-status-low: #3DD9C2;
-  --color-status-medium: #F2A93B;
-  --color-status-high: #FF8A5B;
-  --color-status-urgent: #FF6B5B;
+  --color-status-low: #6FA89A;
+  --color-status-medium: #E0A65C;
+  --color-status-high: #E08A5C;
+  --color-status-urgent: #E0705C;
 
-  --color-success: #3DD9C2;
-  --color-danger: #FF6B5B;
+  --color-success: #6FA89A;
+  --color-danger: #E0705C;
 
   /* ── Type ── */
   --font-display: 'Space Grotesk', sans-serif;
@@ -56,7 +58,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-accent);
 }
 
-/* Visible keyboard focus everywhere — accessibility floor */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
@@ -71,7 +72,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Thin, unobtrusive scrollbar to match the dark surface */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -84,29 +84,29 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
 }
 
-/* Signature: the priority "orbit dot" — used on task cards/rows */
+/* Signature: priority "orbit dot" */
 .orbit-dot {
   width: 8px;
   height: 8px;
   border-radius: 999px;
   display: inline-block;
-  box-shadow: 0 0 0 3px currentColor, 0 0 8px 1px currentColor;
-  opacity: 0.9;
+  box-shadow: 0 0 0 3px currentColor, 0 0 6px 1px currentColor;
+  opacity: 0.85;
 }
 .orbit-dot-pulse {
   animation: orbit-pulse 1.8s ease-in-out infinite;
 }
 @keyframes orbit-pulse {
-  0%, 100% { box-shadow: 0 0 0 3px currentColor, 0 0 8px 1px currentColor; }
-  50% { box-shadow: 0 0 0 5px currentColor, 0 0 14px 3px currentColor; }
+  0%, 100% { box-shadow: 0 0 0 3px currentColor, 0 0 6px 1px currentColor; }
+  50% { box-shadow: 0 0 0 5px currentColor, 0 0 10px 2px currentColor; }
 }
 
-/* Signature: sidebar active-icon sliding glow pill */
+/* Signature: sidebar active-icon pill — soft fill instead of glow on light bg */
 .sidebar-active-pill {
   position: absolute;
   inset: 0;
   border-radius: 12px;
   background: var(--color-accent-muted);
-  box-shadow: inset 0 0 0 1px rgba(242, 169, 59, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(111, 168, 154, 0.3);
   transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
 }

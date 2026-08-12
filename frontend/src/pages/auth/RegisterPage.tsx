@@ -40,7 +40,7 @@ export function RegisterPage() {
     <div className="flex min-h-screen items-center justify-center bg-[var(--color-base)] px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-accent)] font-[var(--font-display)] text-2xl font-bold text-[#151007]">
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-accent)] font-[var(--font-display)] text-2xl font-bold text-[var(--color-accent-text)]">
             F
           </div>
           <h1 className="font-[var(--font-display)] text-2xl font-semibold">Create your account</h1>
@@ -75,7 +75,7 @@ export function RegisterPage() {
           />
 
           {error && (
-            <p className="rounded-lg bg-[rgba(255,107,91,0.1)] px-3 py-2 text-sm text-[var(--color-danger)]">
+            <p className="rounded-lg bg-[rgba(224,112,92,0.1)] px-3 py-2 text-sm text-[var(--color-danger)]">
               {error}
             </p>
           )}

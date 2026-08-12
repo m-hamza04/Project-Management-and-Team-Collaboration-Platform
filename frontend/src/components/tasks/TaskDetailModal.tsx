@@ -165,7 +165,7 @@ export function TaskDetailModal({ task, onClose }: { task: Task; onClose: () => 
               </p>
             ) : (
               discussions.map((d) => (
-                <div key={d.id} className="rounded-lg bg-white/5 px-3 py-2">
+                <div key={d.id} className="rounded-lg bg-black/[0.04] px-3 py-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium">{d.author.name}</span>
                     <span className="text-[10px] text-[var(--color-text-faint)]">

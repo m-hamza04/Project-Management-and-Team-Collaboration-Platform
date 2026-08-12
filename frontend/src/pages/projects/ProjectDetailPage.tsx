@@ -115,7 +115,7 @@ export function ProjectDetailPage() {
             project.members.map((m) => (
               <div
                 key={m.user.id}
-                className="flex items-center gap-2 rounded-full bg-white/5 py-1 pl-3 pr-1.5 text-xs"
+                className="flex items-center gap-2 rounded-full bg-black/[0.04] py-1 pl-3 pr-1.5 text-xs"
               >
                 {m.user.name}
                 {isManager && (

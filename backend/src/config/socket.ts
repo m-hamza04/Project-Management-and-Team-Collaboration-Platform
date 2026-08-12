@@ -1,6 +1,7 @@
 import { Server as HttpServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import { verifyToken } from '../utils/jwt';
+import prisma from './db';
 
 let io: Server;
 
@@ -18,6 +19,7 @@ export const initSocket = (httpServer: HttpServer) => {
 
       const decoded = verifyToken(token);
       socket.data.userId = decoded.id;
+      socket.data.role = decoded.role;
       next();
     } catch {
       next(new Error('Invalid or expired token'));
@@ -32,6 +34,36 @@ export const initSocket = (httpServer: HttpServer) => {
     // without tracking socket ids manually.
     socket.join(userId);
 
+    // ── Live chat: join a project's chat room ──
+    // Client calls this once when opening a project's chat tab.
+    socket.on('join-project', async (projectId: string) => {
+      const hasAccess = await userCanAccessProject(userId, socket.data.role, projectId);
+      if (!hasAccess) return;
+      socket.join(`project:${projectId}`);
+    });
+
+    socket.on('leave-project', (projectId: string) => {
+      socket.leave(`project:${projectId}`);
+    });
+
+    // ── Live chat: send a message ──
+    // Sent directly over the socket (not REST) for lower latency.
+    socket.on('send-message', async (payload: { projectId: string; content: string }) => {
+      const { projectId, content } = payload;
+      if (!content?.trim()) return;
+
+      const hasAccess = await userCanAccessProject(userId, socket.data.role, projectId);
+      if (!hasAccess) return;
+
+      const message = await prisma.message.create({
+        data: { projectId, authorId: userId, content: content.trim() },
+        include: { author: { select: { id: true, name: true, email: true, role: true } } },
+      });
+
+      // Broadcast to everyone currently viewing this project's chat, including the sender
+      io.to(`project:${projectId}`).emit('new-message', message);
+    });
+
     socket.on('disconnect', () => {
       // socket.io automatically leaves rooms on disconnect, nothing to clean up here
     });
@@ -39,6 +71,19 @@ export const initSocket = (httpServer: HttpServer) => {
 
   return io;
 };
+
+// Shared access check: Admin, the project's PM, or a member of that project
+async function userCanAccessProject(userId: string, role: string, projectId: string) {
+  const project = await prisma.project.findUnique({
+    where: { id: projectId },
+    include: { members: true },
+  });
+  if (!project) return false;
+  if (role === 'ADMIN') return true;
+  if (role === 'PROJECT_MANAGER' && project.managerId === userId) return true;
+  if (role === 'TEAM_MEMBER' && project.members.some((m) => m.userId === userId)) return true;
+  return false;
+}
 
 // Used anywhere else in the app (e.g. notification.service.ts) to push events
 export const getIO = (): Server => {

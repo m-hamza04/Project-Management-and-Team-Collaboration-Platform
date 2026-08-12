@@ -1,14 +1,14 @@
 import { clsx } from 'clsx';
 
 const STATUS_STYLES: Record<string, string> = {
-  TODO: 'bg-white/5 text-[var(--color-text-muted)]',
+  TODO: 'bg-black/[0.04] text-[var(--color-text-muted)]',
   IN_PROGRESS: 'bg-[var(--color-accent-muted)] text-[var(--color-accent)]',
-  REVIEW: 'bg-[rgba(61,217,194,0.14)] text-[var(--color-status-low)]',
-  COMPLETED: 'bg-[rgba(61,217,194,0.2)] text-[var(--color-success)]',
-  PLANNED: 'bg-white/5 text-[var(--color-text-muted)]',
+  REVIEW: 'bg-[rgba(224,166,92,0.16)] text-[var(--color-status-medium)]',
+  COMPLETED: 'bg-[rgba(111,168,154,0.18)] text-[var(--color-success)]',
+  PLANNED: 'bg-black/[0.04] text-[var(--color-text-muted)]',
   ACTIVE: 'bg-[var(--color-accent-muted)] text-[var(--color-accent)]',
-  ON_HOLD: 'bg-[rgba(255,138,91,0.14)] text-[var(--color-status-high)]',
-  CANCELLED: 'bg-[rgba(255,107,91,0.14)] text-[var(--color-status-urgent)]',
+  ON_HOLD: 'bg-[rgba(224,138,92,0.16)] text-[var(--color-status-high)]',
+  CANCELLED: 'bg-[rgba(224,112,92,0.16)] text-[var(--color-status-urgent)]',
 };
 
 const STATUS_LABELS: Record<string, string> = {

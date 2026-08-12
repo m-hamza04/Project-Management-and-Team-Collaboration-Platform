@@ -1,7 +1,7 @@
 import { LucideIcon } from 'lucide-react';
 
 export function Skeleton({ className = '' }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-white/5 ${className}`} />;
+  return <div className={`animate-pulse rounded-xl bg-black/[0.04] ${className}`} />;
 }
 
 export function EmptyState({
@@ -17,7 +17,7 @@ export function EmptyState({
 }) {
   return (
     <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-[var(--color-border)] py-16 text-center">
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-[var(--color-text-faint)]">
+      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-black/[0.04] text-[var(--color-text-faint)]">
         <Icon size={20} />
       </div>
       <h3 className="font-[var(--font-display)] text-base font-semibold">{title}</h3>

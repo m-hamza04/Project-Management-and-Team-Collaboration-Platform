@@ -74,7 +74,7 @@ export function ProjectsPage() {
               className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-colors ${
                 status === s
                   ? 'bg-[var(--color-accent-muted)] text-[var(--color-accent)]'
-                  : 'text-[var(--color-text-muted)] hover:bg-white/5'
+                  : 'text-[var(--color-text-muted)] hover:bg-black/[0.04]'
               }`}
             >
               {s === 'ALL' ? 'All' : s.replace('_', ' ')}
