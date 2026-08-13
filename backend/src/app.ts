@@ -7,8 +7,17 @@ import { errorHandler, notFoundHandler } from './middlewares/error.middleware';
 
 const app = express();
 
+const allowedOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
+  : ['http://localhost:5173', 'http://localhost:5174'];
+
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(morgan('dev'));
 

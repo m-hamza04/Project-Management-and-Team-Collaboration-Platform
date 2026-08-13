@@ -6,11 +6,16 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "build": "prisma generate && tsc",
+    "vercel-build": "prisma generate",
     "start": "node dist/server.js",
     "seed": "tsx prisma/seed.ts",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "postinstall": "prisma generate"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "keywords": [],
   "author": "",
