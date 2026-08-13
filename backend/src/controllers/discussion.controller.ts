@@ -5,7 +5,7 @@ import * as discussionService from '../services/discussion.service';
 
 export const addMessage = asyncHandler(async (req: Request, res: Response) => {
   const discussion = await discussionService.addDiscussionMessage(
-    req.params.taskId,
+    req.params.taskId as string,
     req.user!.id,
     req.user!,
     req.body.message
@@ -14,6 +14,6 @@ export const addMessage = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getMessages = asyncHandler(async (req: Request, res: Response) => {
-  const messages = await discussionService.getDiscussionByTask(req.params.taskId, req.user!);
+  const messages = await discussionService.getDiscussionByTask(req.params.taskId as string, req.user!);
   sendSuccess(res, 200, 'Messages fetched', messages);
 });

@@ -20,21 +20,21 @@ export const getTasks = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getTaskById = asyncHandler(async (req: Request, res: Response) => {
-  const task = await taskService.getTaskById(req.params.id, req.user!);
+  const task = await taskService.getTaskById(req.params.id as string, req.user!);
   sendSuccess(res, 200, 'Task fetched', task);
 });
 
 export const updateTask = asyncHandler(async (req: Request, res: Response) => {
-  const task = await taskService.updateTask(req.params.id, req.user!, req.body);
+  const task = await taskService.updateTask(req.params.id as string, req.user!, req.body);
   sendSuccess(res, 200, 'Task updated', task);
 });
 
 export const updateTaskStatus = asyncHandler(async (req: Request, res: Response) => {
-  const task = await taskService.updateTaskStatus(req.params.id, req.user!, req.body.status);
+  const task = await taskService.updateTaskStatus(req.params.id as string, req.user!, req.body.status);
   sendSuccess(res, 200, 'Task status updated', task);
 });
 
 export const deleteTask = asyncHandler(async (req: Request, res: Response) => {
-  await taskService.deleteTask(req.params.id, req.user!);
+  await taskService.deleteTask(req.params.id as string, req.user!);
   sendSuccess(res, 200, 'Task deleted');
 });

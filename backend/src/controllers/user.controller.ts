@@ -21,16 +21,16 @@ export const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getUserById = asyncHandler(async (req: Request, res: Response) => {
-  const user = await userService.getUserById(req.params.id);
+  const user = await userService.getUserById(req.params.id as string);
   sendSuccess(res, 200, 'User fetched', user);
 });
 
 export const updateUser = asyncHandler(async (req: Request, res: Response) => {
-  const user = await userService.updateUser(req.params.id, req.body);
+  const user = await userService.updateUser(req.params.id as string, req.body);
   sendSuccess(res, 200, 'User updated', user);
 });
 
 export const deleteUser = asyncHandler(async (req: Request, res: Response) => {
-  await userService.deleteUser(req.params.id);
+  await userService.deleteUser(req.params.id as string);
   sendSuccess(res, 200, 'User deleted');
 });

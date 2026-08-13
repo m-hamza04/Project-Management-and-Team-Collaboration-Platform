@@ -5,7 +5,7 @@ import * as messageService from '../services/message.service';
 
 export const sendMessage = asyncHandler(async (req: Request, res: Response) => {
   const message = await messageService.createMessage(
-    req.params.projectId,
+    req.params.projectId as string,
     req.user!.id,
     req.user!,
     req.body.content
@@ -14,6 +14,6 @@ export const sendMessage = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getMessages = asyncHandler(async (req: Request, res: Response) => {
-  const messages = await messageService.getMessagesByProject(req.params.projectId, req.user!);
+  const messages = await messageService.getMessagesByProject(req.params.projectId as string, req.user!);
   sendSuccess(res, 200, 'Messages fetched', messages);
 });

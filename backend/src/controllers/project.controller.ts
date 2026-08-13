@@ -19,26 +19,26 @@ export const getProjects = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const getProjectById = asyncHandler(async (req: Request, res: Response) => {
-  const project = await projectService.getProjectById(req.params.id, req.user!);
+  const project = await projectService.getProjectById(req.params.id as string, req.user!);
   sendSuccess(res, 200, 'Project fetched', project);
 });
 
 export const updateProject = asyncHandler(async (req: Request, res: Response) => {
-  const project = await projectService.updateProject(req.params.id, req.user!, req.body);
+  const project = await projectService.updateProject(req.params.id as string, req.user!, req.body);
   sendSuccess(res, 200, 'Project updated', project);
 });
 
 export const deleteProject = asyncHandler(async (req: Request, res: Response) => {
-  await projectService.deleteProject(req.params.id);
+  await projectService.deleteProject(req.params.id as string);
   sendSuccess(res, 200, 'Project deleted');
 });
 
 export const addMember = asyncHandler(async (req: Request, res: Response) => {
-  const project = await projectService.addMember(req.params.id, req.body.userId, req.user!);
+  const project = await projectService.addMember(req.params.id as string, req.body.userId, req.user!);
   sendSuccess(res, 200, 'Member added', project);
 });
 
 export const removeMember = asyncHandler(async (req: Request, res: Response) => {
-  const project = await projectService.removeMember(req.params.id, req.params.userId, req.user!);
+  const project = await projectService.removeMember(req.params.id as string, req.params.userId as string, req.user!);
   sendSuccess(res, 200, 'Member removed', project);
 });
