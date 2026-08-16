@@ -1,6 +1,11 @@
-FROM node:22-alpine
+FROM node:20-alpine
 
 WORKDIR /app
+
+ARG DATABASE_URL=postgresql://placeholder:placeholder@localhost:5432/placeholder
+ARG DIRECT_URL=postgresql://placeholder:placeholder@localhost:5432/placeholder
+ENV DATABASE_URL=$DATABASE_URL
+ENV DIRECT_URL=$DIRECT_URL
 
 COPY package*.json ./
 COPY prisma ./prisma
