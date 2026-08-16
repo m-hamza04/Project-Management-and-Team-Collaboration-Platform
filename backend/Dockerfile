@@ -15,6 +15,7 @@ COPY . .
 
 RUN npx prisma generate
 RUN npm run build
+RUN echo '{"type":"commonjs"}' > dist/package.json
 
 EXPOSE 8080
 
